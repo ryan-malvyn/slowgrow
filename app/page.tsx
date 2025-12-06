@@ -2,6 +2,7 @@ import Link from "next/link";
 import { type SanityDocument } from "next-sanity";
 import { client } from "../sanity/lib/client";
 import PostObject from "../components/blog/postObject"
+import SideBar from "@/components/recentArticles";
 
 const POSTS_QUERY = `*[
   _type == "blogPost" && defined(slug.current)
@@ -46,7 +47,7 @@ export default async function IndexPage() {
           ))}
         </ul>
         <ul className="flex-col hidden md:flex gap-y-4 md:max-w-2/7 ml-6 py-4 grow text-right text-pretty">
-          This is the sidebar here
+          <SideBar />
         </ul>
       </div>
     </main>
