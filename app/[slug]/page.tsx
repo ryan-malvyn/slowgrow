@@ -23,26 +23,33 @@ export default async function PostPage({
   const postImageUrl = post.image
     ? urlFor(post.image)?.width(550).height(310).url()
     : null;
-
+  post.sections.map((section)=>{
+    
+  })
   return (
-    <main className="container mx-auto min-h-screen max-w-3xl p-8 flex flex-col gap-4">
-      <Link href="/" className="hover:underline">
-        ← Back to posts
-      </Link>
-      {postImageUrl && (
-        <img
-          src={postImageUrl}
-          alt={post.title}
-          className="aspect-video rounded-xl"
-          width="550"
-          height="310"
-        />
-      )}
-      <h1 className="text-4xl font-bold mb-8 font-serif">{post.title}</h1>
-      <div className="prose">
-        <p>Published: {new Date(post.publishedAt).toLocaleDateString()}</p>
-        {Array.isArray(post.body) && <PortableText value={post.body} />}
-      </div>
+    <main className="flex gap-4 justify-center">
+      <main className="container min-h-screen max-w-3xl p-8 pr-0 flex flex-col gap-4">
+        <Link href="/" className="hover:underline">
+          ← Back to posts
+        </Link>
+        {postImageUrl && (
+          <img
+            src={postImageUrl}
+            alt={post.title}
+            className="aspect-video rounded-xl"
+            width="550"
+            height="310"
+          />
+        )}
+        <h1 className="text-4xl font-bold mb-8 font-serif">{post.title}</h1>
+        <div className="prose">
+          <p>Published: {new Date(post.publishedAt).toLocaleDateString()}</p>
+          {Array.isArray(post.body) && <PortableText value={post.body} />}
+        </div>
+    </main>
+      <section className='p-2 mt-40 hidden md:flex text-right'>
+        This is the chapters navigation section
+      </section>
     </main>
   );
 }

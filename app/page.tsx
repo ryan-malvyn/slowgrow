@@ -22,26 +22,33 @@ export default async function IndexPage() {
   const today = new Date();
   const todayDate = today.toLocaleDateString();
   const currentTime = today.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-  console.log(posts)
   return (
-    <main className="container max-w-3/5 mx-auto mt-20 min-h-screen md:pl-0">
-      <h3 className="mb-10 text-sm font-sans text-slate-400">@ryanmalvyn</h3>
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold font-serif mb-2">Stories</h1>
-        <div className="flex justify-between max-w-3/4 text-slate-400 text-sm font-sans md:w-1/2">
-          <p>
-            {todayDate}
-          </p>
-          <p>
-            {currentTime}
-          </p>
-        </div>
+    <main className="container p-4">
+      <div className='flex justify-between'>
+        <h3 className="mb-10 text-sm font-sans text-slate-400 ml-4 md:ml-0">@ryanmalvyn</h3>
+        Ryan Malvyn
       </div>
-      <ul className="flex flex-col gap-y-4">
-        {posts.map((post) => (
-          <PostObject key={post._id} postData={post} />
-        ))}
-      </ul>
+      <div className="mb-8border -red-400">
+          <h1 className="text-4xl font-bold font-serif mb-2 ml-4 md:ml-0">Stories</h1>
+          <div className="flex justify-between text-slate-400 text-sm font-sans md:max-w-4/7 ml-4 md:ml-0">
+            <p>
+              {todayDate}
+            </p>
+            <p>
+              {currentTime}
+            </p>
+          </div>
+      </div>
+      <div className="flex justify-evenly mt-4">
+        <ul className="flex flex-col gap-y-4 md:max-w-5/7 p-4 pl-0">
+          {posts.map((post) => (
+            <PostObject key={post._id} postData={post} />
+          ))}
+        </ul>
+        <ul className="flex-col hidden md:flex gap-y-4 md:max-w-2/7 ml-6 py-4 grow text-right text-pretty">
+          This is the sidebar here
+        </ul>
+      </div>
     </main>
   );
 }
