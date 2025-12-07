@@ -19,13 +19,25 @@ export default async function PostPage({
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  const post = await client.fetch<SanityDocument>(POST_QUERY, await params, options);
+  const post = await client.fetch<SanityDocument>(
+    POST_QUERY,
+    await params,
+    options,
+  );
+  const sections = post.sections;
+  const navigationArrayItems = sections.map((section) => {
+    return section.title;
+  });
+  const contentBlobs = post.sections[0].content;
+
+  for (let i = 0; i < contentBlobs.length - 1; i++) {
+    const textBlob = contentBlobs[i].children[0].text;
+    console.log(textBlob);
+  }
+
   const postImageUrl = post.image
     ? urlFor(post.image)?.width(550).height(310).url()
     : null;
-  post.sections.map((section)=>{
-    
-  })
   return (
     <main className="flex gap-4 justify-center">
       <main className="container min-h-screen max-w-3xl p-8 pr-0 flex flex-col gap-4">
@@ -46,8 +58,8 @@ export default async function PostPage({
           <p>Published: {new Date(post.publishedAt).toLocaleDateString()}</p>
           {Array.isArray(post.body) && <PortableText value={post.body} />}
         </div>
-    </main>
-      <section className='p-2 mt-40 hidden md:flex text-right'>
+      </main>
+      <section className="p-2 mt-40 hidden md:flex text-right">
         This is the chapters navigation section
       </section>
     </main>
