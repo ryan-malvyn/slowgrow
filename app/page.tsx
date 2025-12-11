@@ -18,7 +18,7 @@ const POSTS_QUERY = `*[
 
 const options = { next: { revalidate: 30 } };
 export default async function IndexPage() {
-  const posts = await client.fetch<SanityDocument[]>(POSTS_QUERY, {}, options);
+  const posts = await client.fetch<BlogPost[]>(POSTS_QUERY, {}, options);
   return (
     <main className="container p-4">
       <div className="flex justify-between">
@@ -35,7 +35,7 @@ export default async function IndexPage() {
       </div>
       <div className="flex justify-evenly mt-4">
         <ul className="flex flex-col gap-y-4 md:max-w-5/7 p-4 pl-0">
-          {posts.map((post) => (
+          {posts.map((post: BlogPost) => (
             <PostObject key={post._id} postData={post} />
           ))}
         </ul>

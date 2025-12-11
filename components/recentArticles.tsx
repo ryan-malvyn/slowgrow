@@ -20,7 +20,6 @@ const SideBar = async () => {
     {},
     options,
   );
-  console.log(recentReads);
 
   if (!recentReads) {
     return <div className="text-center">No recent reads found.</div>;

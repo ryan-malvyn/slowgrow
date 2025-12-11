@@ -1,15 +1,8 @@
+import { BlogPost } from "@/types/blogPost";
 import Link from "next/link";
 
 interface PostObjectProps {
-  postData: {
-    category: string;
-    description: string;
-    mainImage: string;
-    publishedAt: string;
-    sections: string[];
-    slug: { current: string };
-    title: string;
-  };
+  postData: BlogPost;
 }
 
 const PostObject = ({ postData }: PostObjectProps) => {
