@@ -3,10 +3,6 @@ import PostObject from "../components/blog/postObject";
 import SideBar from "@/components/recentArticles";
 import { BlogPost } from "@/types/blogPost";
 
-interface PostObjectProps {
-  postData: BlogPost;
-}
-
 const POSTS_QUERY = `*[
   _type == "blogPost" && defined(slug.current)
 ]|order(publishedAt desc)[0...12]{
@@ -40,7 +36,9 @@ export default async function IndexPage() {
       <div className="flex justify-evenly mt-4">
         <ul className="flex flex-col gap-y-4 md:max-w-5/7 p-4 pl-0">
           {posts.map((post) => (
-            <PostObject key={post._id} postData={post} />
+            <li key={post._id}>
+              <PostObject postData={post} />
+            </li>
           ))}
         </ul>
         <ul className="flex-col hidden md:flex gap-y-4 md:max-w-2/7 ml-6 py-4 grow text-right text-pretty">

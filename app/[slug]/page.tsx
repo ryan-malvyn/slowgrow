@@ -1,4 +1,5 @@
-import { PortableText, type SanityDocument } from "next-sanity";
+import { PortableText } from "next-sanity";
+import { BlogPost } from "@/types/blogPost";
 import imageUrlBuilder from "@sanity/image-url";
 import { client } from "@/sanity/lib/client";
 import Link from "next/link";
@@ -33,15 +34,7 @@ export default async function PostPage({
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  const post = await client.fetch<SanityDocument>(
-    POST_QUERY,
-    await params,
-    options,
-  );
-
-  const postImageUrl = post.image
-    ? urlFor(post.image)?.width(550).height(310).url()
-    : null;
+  const post = await client.fetch<BlogPost>(POST_QUERY, await params, options);
 
   const sections = post.sections || [];
   console.log(sections);
