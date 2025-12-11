@@ -2,6 +2,7 @@ import { type SanityDocument } from "next-sanity";
 import { client } from "../sanity/lib/client";
 import PostObject from "../components/blog/postObject";
 import SideBar from "@/components/recentArticles";
+import { BlogPost } from "@/types/blogPost";
 
 const POSTS_QUERY = `*[
   _type == "blogPost" && defined(slug.current)
