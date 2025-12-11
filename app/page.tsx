@@ -1,8 +1,11 @@
-import { type SanityDocument } from "next-sanity";
 import { client } from "../sanity/lib/client";
 import PostObject from "../components/blog/postObject";
 import SideBar from "@/components/recentArticles";
 import { BlogPost } from "@/types/blogPost";
+
+interface PostObjectProps {
+  postData: BlogPost;
+}
 
 const POSTS_QUERY = `*[
   _type == "blogPost" && defined(slug.current)
@@ -36,7 +39,7 @@ export default async function IndexPage() {
       </div>
       <div className="flex justify-evenly mt-4">
         <ul className="flex flex-col gap-y-4 md:max-w-5/7 p-4 pl-0">
-          {posts.map((post: BlogPost) => (
+          {posts.map((post) => (
             <PostObject key={post._id} postData={post} />
           ))}
         </ul>
