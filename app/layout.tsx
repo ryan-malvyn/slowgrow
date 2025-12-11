@@ -2,23 +2,21 @@ import type { Metadata } from "next";
 import { Source_Sans_3, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 
-
 const sans = Source_Sans_3({
   subsets: ["latin"],
-  weight: ["200", "300", "400", "500", "600", "700", "800", "900"], 
+  weight: ["200", "300", "400", "500", "600", "700", "800", "900"],
   style: ["normal", "italic"],
   variable: "--font-sans",
   display: "swap",
-})
+});
 
 const serif = Source_Serif_4({
   subsets: ["latin"],
-  weight: ["200", "300", "400", "500", "600", "700", "800", "900"], 
+  weight: ["200", "300", "400", "500", "600", "700", "800", "900"],
   style: ["normal", "italic"],
   variable: "--font-serif",
   display: "swap",
-})
-
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -32,8 +30,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${serif.variable} ${sans.variable}`}>
-      <body className="font-sans bg-zinc-900 mt-20 md:max-w-3/5 lg:max-w-3/7 flex flex-col mx-auto min-h-screen text-slate-50">
-      {children}
+      <body className="font-sans bg-zinc-900 mt-20 md:max-w-3/5 flex flex-col mx-auto min-h-screen text-slate-50">
+        {children}
       </body>
     </html>
   );
