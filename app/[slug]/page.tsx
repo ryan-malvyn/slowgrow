@@ -35,55 +35,31 @@ export default async function PostPage({
   params: Promise<{ slug: string }>;
 }) {
   const post = await client.fetch<BlogPost>(POST_QUERY, await params, options);
-
+  const publishedDate = new Date(post.publishedAt).toLocaleDateString();
   const sections = post.sections || [];
   console.log(sections);
 
   return (
     <main className="flex gap-4 justify-center">
-      <main className="container min-h-screen p-8 pr-0 flex flex-col gap-4">
-        <Link href="/" className="hover:underline">
-          ← Back to posts
-        </Link>
+      <main className="container min-h-screen p-8 flex flex-col gap-4">
+        <article className="prose prose-invert mx-auto max-w-prose px-8">
+          <h1 className="mb-2 text-4xl font-serif font-bold text-white">
+            {post.title}
+          </h1>
+          <p className="mb-8 text-sm font-light opacity-60">{publishedDate}</p>
 
-        {postImageUrl && (
-          <img
-            src={postImageUrl}
-            alt={post.title}
-            className="aspect-video rounded-xl"
-            width="550"
-            height="310"
-          />
-        )}
-
-        <h1 className="text-4xl font-bold mb-8 font-serif">{post.title}</h1>
-
-        <div className="prose">
-          <p>Published: {new Date(post.publishedAt).toLocaleDateString()}</p>
-        </div>
-
-        {sections.length > 0 && (
-          <article className="prose prose-lg">
-            {sections.map((section: any, index: number) => (
-              <section
-                key={index}
-                id={`section-${index}`}
-                className="mb-8 text-slate-200"
-              >
-                {section.title && (
-                  <h2 className="text-2xl text-white font-semibold mb-4">
-                    {section.title}
-                  </h2>
-                )}
-                {section.content && <PortableText value={section.content} />}
+          {sections.length > 0 &&
+            sections.map((section, index) => (
+              <section key={index} id={`section-${index}`} className="mb-10">
+                {section.title && <h2>{section.title}</h2>}
+                {section?.content && <PortableText value={section?.content} />}
               </section>
             ))}
-          </article>
-        )}
+        </article>
       </main>
 
       {sections.length > 0 && (
-        <aside className="p-2 mt-40 hidden md:block">
+        <aside className="mt-40 hidden md:block">
           <nav className="sticky top-40 text-left">
             <h3 className="font-semibold mb-4 text-sm uppercase text-gray-600">
               Contents

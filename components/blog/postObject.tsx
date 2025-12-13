@@ -37,7 +37,7 @@ const PostObject = ({ postData }: PostObjectProps) => {
           <h2 className="font-serif mb-1 font-semibold text-2xl hover:underline underline-offset-4">
             {title}
           </h2>
-          <p className="font-light leading-4.5 text-sm text-slate-400 mb-2 text-left">
+          <p className="font-light leading-4.5 text-sm text-slate-400 max-w-prose mb-2 text-left">
             {description}
           </p>
           <div className="flex font-light text-slate-500 justify-between grow mt-2">
